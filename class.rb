@@ -1,84 +1,93 @@
 TAX = 5.42
 class Car
 
-	def initialize(value)
-		
-		@make = value[:make]
-		@model = value[:model]
+	attr_reader :make, :model, :engine, :transmission, :year, :color, :customsClearnce, :price
+
+  def initialize(make, model, value)		
+		@make = make
+		@model = model
 		@engine = value[:engine]
 		@transmission = value[:transmission]		
 		@year = value[:year]
 		@color = value[:color]
 		@customsClearnce = value[:customsClearnce]
 		@price = value[:price]
-
 	end
+	
 
-	attr_reader :make, :model, :engine, :transmission, :year, :color, :customsClearnce, :price
-
-	def Show
-
+	def show
 		puts
-		puts make + ' ' + model
-		puts "Transmission: " + transmission
-		puts "Engine: " + engine.to_s
-		puts "Color: " + color
-		puts "Year: " + year.to_s
-		puts "CustomsClearnce: " + customsClearnce
-		puts "Price: " + price.to_s
-
+		puts "#{make} #{model}"
+		puts "Transmission: #{transmission}"
+		puts "Engine: #{engine}"
+		puts "Color: #{color}"
+		puts "Year: #{year}"
+		puts "CustomsClearnce: #{customsClearnce}"
+		puts "Price: #{price.to_s}"
 	end
 
-	def Painting
 
+	def painting
 		puts "Painting"
-		puts "1: white, 2: black, 3: green, 4: red, 5: blue"
-		col = gets.chomp
-		case col.to_f
-
-		when 1
-			@color = "white"
-		when 2
-			@color = "black"
-		when 3
-			@color = "green"			
-		when 4
-			@color = "red"
-		when 5
-			@color = "blue"
-		else
+		colors = ["white", "black", "green", "red", "blue"]
+		for i in 0..colors.size - 1
+			print (i + 1).to_s + ": #{colors[i]} "
+		end 
+		col = gets
+		if col.to_f > colors.size
 			puts "no color"
-
+		else @color = colors[col.to_f - 1]
 		end
-
 	end
 
-	def OnCustoms
-
+	def onCustoms
 		if customsClearnce == "yes"
 			puts "Your car customs clearnce"
 		else
 			@price += engine * TAX
 			@customsClearnce = "yes"
 			puts
-			puts "Complited. New price = " + price.to_s
+			puts "Complited. New price = #{price}"
 		end
-
 	end
 
 end
 
-id1 = Car.new( :make => "Toyota", :model => "Corolla", :engine => 1333, :transmission => "automatic", :year => 2000, :color => "white", :customsClearnce => "yes", :price => 200000)
-id2 = Car.new( :make => "Mazda", :model => "RX-7", :engine => 1350, :transmission => "manual", :year => 2002, :color => "red", :customsClearnce => "yes", :price => 500000)
-id3 = Car.new( :make => "Mazda", :model => "RX-8", :engine => 1300, :transmission => "manual", :year => 2010, :color => "black", :customsClearnce => "no", :price => 500000)
-id1.Show
-id2.Show
-id3.Show
+id1 = Car.new(
+	"Toyota", "Corolla",
+	:engine =>          1333, 
+	:transmission =>    "automatic", 
+	:year =>            2000, 
+	:color =>           "white", 
+	:customsClearnce => "yes", 
+	:price =>           200000)
 
-id1.Painting
-id2.Painting
-id1.Show
-id2.Show
+id2 = Car.new(
+	"Mazda", "RX-7", 
+	:engine =>          1350, 
+	:transmission =>    "manual", 
+	:year =>            2002, 
+	:color =>           "red", 
+	:customsClearnce => "yes", 
+	:price =>           500000)
 
-id3.OnCustoms
-id3.Show
+id3 = Car.new(
+	"Mazda", "RX-8", 
+	:engine => 					1300, 
+	:transmission => 		"manual", 
+	:year => 						2010, 
+	:color => 					"black", 
+	:customsClearnce => "no", 
+	:price => 					500000)
+
+id1.show
+id2.show
+id3.show
+
+id1.painting
+id2.painting
+id1.show
+id2.show
+
+id3.onCustoms
+id3.show
