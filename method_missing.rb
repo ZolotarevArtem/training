@@ -53,10 +53,10 @@ class Sorter
       sortCar = args.sort_by{ |value| value[search.to_sym] }
       for i in 0...sortCar.length
         puts sortCar[i][:title] + "\t#{sortCar[i][search.to_sym]}"
-      end
-      else
-        puts "not found: #{m}"
-      end
+    end
+    else
+      puts "not found: #{m}"
+    end
   end
 
 end
