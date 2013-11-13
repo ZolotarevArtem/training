@@ -9,9 +9,9 @@ cars = [
   },
 
   {
-		title: "Mazda rx-7",
-		engine: 1300,
-		length: 4285,
+    title: "Mazda rx-7",
+    engine: 1300,
+    length: 4285,
 		width: 1760,
 		height: 1230,
 		weight: 1280,
